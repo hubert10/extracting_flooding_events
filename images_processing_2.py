@@ -45,8 +45,22 @@ s2cloudless_path = path_img + "/2022/cloud"
 reference_image_path = path_img + "/2022/mndwi/mndwi_2022-01-02.tif"
 rgb_img = path_img + "/2022/rgb/mndwi_2022-01-02.tif"
 test_img = path_img + "/output/test.tif"
+dir_name = s2cloudless_path
 # reference_s2cloudless_path =path_img+'/2021/cloud/cloud_2021-01-02.tif'
 
+# Get List of filemames
+def get_list_of_files(dir_name):
+    # create a list of file and sub directories
+    # names in the given directory
+    listOfFile = os.listdir(dir_name)
+    allFiles = list()
+    # Iterate over all the entries
+    for entry in listOfFile:
+        # Create full path
+        filename = entry.split("/")[-1]
+        if filename.startswith("cloud"):
+            allFiles.append(filename)
+    return allFiles
 
 def is_image_good_to_work_with(reference_image_path, img_path, boundary_path):
     """
@@ -158,7 +172,8 @@ for i in selection_ndwi.keys():
     listcloud.append(selection_s2cloudless[i])
 
 
-# listcloud = ['cloud_2019-12-29.tif',
+listcloud = get_list_of_files(dir_name)
+
 #  'cloud_2020-01-03.tif',
 #  'cloud_2020-01-08.tif',
 #  'cloud_2020-01-13.tif',

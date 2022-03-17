@@ -9,6 +9,7 @@ logs/
 results/
 QGIS/
 stevennotebooks/
+earthengine/
 temp/
 test/
 logs/
