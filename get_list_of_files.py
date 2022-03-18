@@ -34,7 +34,9 @@ def main():
     # Get the list of all files in directory tree at given path
     listOfFiles = list()
     for (dirpath, dirnames, filenames) in os.walk(dirName):
-        listOfFiles += [os.path.join(dirpath, file.split("/")[-1]) for file in filenames]
+        listOfFiles += [
+            os.path.join(dirpath, file.split("/")[-1]) for file in filenames
+        ]
 
     # Print the files
     for elem in listOfFiles:

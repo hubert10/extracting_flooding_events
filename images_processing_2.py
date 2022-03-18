@@ -1,26 +1,12 @@
 # import required libraries
 import rasterio
-import pylab
-from rasterio import plot
-import matplotlib.pyplot as plt
-import geopandas as gpd
-import pandas as pd
-from pyproj import CRS
-import osr
-import ogr
-import gdal
-import glob
 from shapely.geometry import mapping
 from rasterio.mask import mask
 import numpy as np
-import matplotlib
-import math
 import os
 from rasterstats import zonal_stats
 from datetime import datetime
 import os
-import logging
-import sys
 from os import environ
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -40,15 +26,15 @@ path_img = PROJECT_ROOT + region
 
 # Specify the path of the images
 mndwi_path = path_img + "/2022/mndwi"
-boundary_path = path_img + "/data/boundaries/dagana2.geojson"
+boundary_path = path_img + "/boundaries/dagana2.geojson"
 s2cloudless_path = path_img + "/2022/cloud"
 reference_image_path = path_img + "/2022/mndwi/mndwi_2022-01-02.tif"
-rgb_img = path_img + "/2022/rgb/mndwi_2022-01-02.tif"
+rgb_img = path_img + "/2022/rgb/rgb_2022-01-02.tif"
 test_img = path_img + "/output/test.tif"
 dir_name = s2cloudless_path
 # reference_s2cloudless_path =path_img+'/2021/cloud/cloud_2021-01-02.tif'
 
-# Get List of filemames
+# Get List of filenames
 def get_list_of_files(dir_name):
     # create a list of file and sub directories
     # names in the given directory
@@ -61,6 +47,7 @@ def get_list_of_files(dir_name):
         if filename.startswith("cloud"):
             allFiles.append(filename)
     return allFiles
+
 
 def is_image_good_to_work_with(reference_image_path, img_path, boundary_path):
     """
@@ -174,38 +161,6 @@ for i in selection_ndwi.keys():
 
 listcloud = get_list_of_files(dir_name)
 
-#  'cloud_2020-01-03.tif',
-#  'cloud_2020-01-08.tif',
-#  'cloud_2020-01-13.tif',
-#  'cloud_2020-01-18.tif',
-#  'cloud_2020-01-23.tif',
-#  'cloud_2020-01-28.tif',
-#  'cloud_2020-02-02.tif',
-#  'cloud_2020-02-07.tif',
-#  'cloud_2020-02-12.tif',
-#  'cloud_2020-02-17.tif',
-#  'cloud_2020-02-22.tif',
-#  'cloud_2020-02-27.tif',
-#  'cloud_2020-03-03.tif',
-#  'cloud_2020-03-08.tif',
-#  'cloud_2020-03-13.tif',
-#  'cloud_2020-03-18.tif',
-#  'cloud_2020-03-23.tif',
-#  'cloud_2020-03-28.tif',
-#  'cloud_2020-04-02.tif',
-#  'cloud_2020-04-07.tif',
-#  'cloud_2020-04-12.tif',
-#  'cloud_2020-04-17.tif',
-#  'cloud_2020-04-22.tif',
-#  'cloud_2020-04-27.tif',
-#  'cloud_2020-05-02.tif',
-#  'cloud_2020-05-07.tif',
-#  'cloud_2020-05-12.tif',
-#  'cloud_2020-05-17.tif',
-#  'cloud_2020-05-22.tif',
-#  'cloud_2020-05-27.tif']
-
-# r = rasterio.open(path_img+'/2021/output/maps/test.tif').read(1)
 r = rasterio.open(test_img).read(1)
 
 arrayimgcopy = r.copy()

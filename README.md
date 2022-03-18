@@ -1,10 +1,10 @@
 # Extracting Flooding Events
 
-What we are trying to do here is to extract flooding flooding dates and areas using MNDWI indixes, RGB images and CLOUD probability from Sentinel 2 imagery.
+What we are trying to do here is to extract flooded areas and proportions using MNDWI indixes, RGB images and CLOUD probability from Sentinel 2 imagery.
 
 # Getting Started
 
-The workflow is divided into 3 steps: 1. Downloading images from Google Earth Engine, 2. Pre-process the downloaded images, and then 3. extract flooding dates and areas
+The workflow is divided into 3 steps: 1. Downloading images from Google Earth Engine, 2. Pre-process the downloaded images, and then 3. extract flooded areas and their corresponding proportions
 
 * [downalod_images.py](downalod_images.py) Is the easiest way to start. It shows how to download high resolution images fron Sent2
 
